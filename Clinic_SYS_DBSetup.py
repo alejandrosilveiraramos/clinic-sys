@@ -1,4 +1,3 @@
-from time import sleep
 import psycopg2
 
 try:
@@ -25,10 +24,9 @@ if conn is not None:
     cursor.execute('CREATE TABLE  person (id serial, name VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, PRIMARY KEY(id));')
     print('Table Person Created!')
 
-    print("Waiting to create reports table - "+ sleep(5))
-
-    cursor.execute('CREATE TABLE  reports (id serial, idPerson int, date_report date NULL, description varchar(128) NOT NULL, PRIMARY KEY(id)) inherits (person);')
-    print('Table Person Created!')
+    # Create the 2 tables first than comment those lines and create this one.
+    # cursor.execute('CREATE TABLE  reports (id serial, idPerson int, date_report date NULL, description varchar(128) NOT NULL, PRIMARY KEY(id)) inherits (person);')
+    # print('Table Reports Created!')
 
     conn.commit()
     cursor.close()
