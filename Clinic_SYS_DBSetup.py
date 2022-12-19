@@ -1,8 +1,6 @@
 from time import sleep
 import psycopg2
 
-print("Testing...")
-
 try:
     conn = psycopg2.connect(
     host = "localhost",
