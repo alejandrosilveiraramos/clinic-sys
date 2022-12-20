@@ -18,7 +18,7 @@ if conn is not None:
 
     cursor = conn.cursor()
     
-    cursor.execute('CREATE TABLE  admin (id serial, name VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, position varchar(64) NOT NULL, PRIMARY KEY(id));')
+    cursor.execute('CREATE TABLE  admin (id serial, name VARCHAR(64)NOT NULL, password VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, position varchar(64) NOT NULL, PRIMARY KEY(id));')
     print('Table Admin Created!')
 
     cursor.execute('CREATE TABLE  person (id serial, name VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, PRIMARY KEY(id));')
