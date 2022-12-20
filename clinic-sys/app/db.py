@@ -21,13 +21,13 @@ if conn is not None:
 
     cursor = conn.cursor()
     
-    #cursor.execute('CREATE TABLE  admin (id serial, name VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, position varchar(64) NOT NULL, PRIMARY KEY(id));')
+    #cursor.execute('CREATE TABLE  admin (id serial, name VARCHAR(64)NOT NULL, password VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, position varchar(64) NOT NULL, PRIMARY KEY(id));')
     #print('Table Admin Created!')
 
     #cursor.execute('CREATE TABLE  person (id serial, name VARCHAR(64)NOT NULL, email VARCHAR(64)NOT NULL, cpf varchar(14) NOT NULL, PRIMARY KEY(id));')
     #print('Table Person Created!')
 
-    cursor.execute('CREATE TABLE  reports (id serial, idPerson int, date_report date NULL, description varchar(128) NOT NULL, PRIMARY KEY(id)) inherits (person);')
+    cursor.execute('CREATE TABLE  reports (id serial, idPerson int, date date NULL, description varchar(128) NOT NULL, PRIMARY KEY(id)) inherits (person);')
     print('Table Person Created!')
 
     conn.commit()
