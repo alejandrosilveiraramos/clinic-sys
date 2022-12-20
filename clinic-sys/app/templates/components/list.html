@@ -1,0 +1,28 @@
+{% extends "./index.html"%}
+{% block content %} 
+<table class="table table-borderless table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">CPF</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in person%}
+            <tr>
+                <td>{{person.name}}</td>
+                <td>{{person.email}}</td>
+                <td>{{person.cpf}}</td>
+
+                <td>
+                    <a href="{{ url_for('update', id=person.id ) }}">Update</a>
+                    <a href="{{ url_for('delete', id=person.id ) }}">Delete</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+    
