@@ -1,22 +1,4 @@
 {% extends "./index.html"%}
 {% block content %} 
-
-    <div class="container">
-
-        <h1>Faça seu login</h1>
-
-        <form  action="{{ url_for('autenticar') }}" method="post">
-
-            <input type="hidden" name="proximo" value="{{ proximo or url_for('index') }}">
-
-            <p><label>Nome de usuário:</label> 
-            <input class="form-control" type="text" name="usuario" required></p>
-
-            <p><label>Senha:</label> 
-            <input class="form-control" type="password" name="senha" required></p>
-            <p><button class="btn btn-primary" type="submit">Entrar</button></p>
-
-        </form>
-    </div>
-
+<h1>login</h1>
 {% endblock %}

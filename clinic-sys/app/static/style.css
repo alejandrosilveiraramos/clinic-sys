@@ -1,0 +1,27 @@
+*{
+    margin:0;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    background-color:#5a5a5a;
+    color:white;
+}
+
+header{
+    height:20vh;
+    font-size:1.5rem;
+}
+
+main{
+    height:70vh;
+    text-align:center;
+}
+
+footer{
+    height:10vh;
+    text-align:center;
+}
