@@ -1,0 +1,33 @@
+{% extends "./index.html"%}
+{% block content %} 
+<table class="table table-dark">
+            
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Console</th>
+            <th scope="col"></th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for jogo in jogos %}
+            <tr>
+                <td>{{ jogo.nome }}</td>
+                <td>{{ jogo.categoria }}</td>
+                <td>{{ jogo.console }}</td>
+
+                <td>
+                    <a href="{{ url_for('editar', id=jogo.id ) }}">Editar</a>|
+                    <a href="{{ url_for('deletar', id=jogo.id ) }}">deletar</a>
+                </td>
+            </tr>
+         {% endfor %}
+                
+    </tbody>
+
+</table>
+{% endblock %}
+    
