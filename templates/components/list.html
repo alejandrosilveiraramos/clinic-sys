@@ -16,7 +16,7 @@
                 <td>{{person.cpf}}</td>
 
                 <td>
-                    <a href="{{ url_for('update', id=person.id ) }}">Update</a>
+                    <a href="{{ url_for('edit_patient', id=person.id ) }}">Update</a>
                     <a href="{{ url_for('delete', id=person.id ) }}">Delete</a>
                 </td>
 

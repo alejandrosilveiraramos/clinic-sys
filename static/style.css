@@ -3,12 +3,12 @@
 }
 
 body{
-    width:100vw;
     height:100vh;
     display:flex;
     flex-direction:column;
-    background-color:#5a5a5a;
-    color:white;
+    background-color:#fff;
+    color:#000;
+    position:relative
 }
 
 header{
@@ -17,15 +17,94 @@ header{
 }
 
 main{
-    height:100vh;
-    text-align:center;
+    display:flex;
+    flex-direction:center;
 }
 
 footer{
-    height:10vh;
+    margin-top:10vh;
+    height:5vh;
     text-align:center;
 }
+h1{
+    margin: 20px;
+}
 
-.teste {
-    background-color: red;
+
+.right-span {
+    background-color: #343a40;
+    border: solid 1px rgb(255, 255, 255);
+    border-radius: 25px;
+    padding: 0px 30px 0px 30px;
+    margin: 10px;
+}
+
+.right-span:hover {
+    background-color: #343a40;
+   
+    border: solid 1px rgb(0, 72, 255);
+    border-radius: 25px;
+    padding: 0px 30px 0px 30px;
+    margin: 10px;
+}
+
+#home_container{
+    display:flex;
+    flex-direction:column;
+}
+
+#home_background{
+    height: 80vh;
+    background-image:url('./assets/clinicspan.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 25px;  
+    margin-bottom:16vh;
+    margin-top:10vh;
+    animation-name: appearing1;
+    animation-duration:3s;
+}
+
+@keyframes appearing1{
+    0% {opacity:0%}
+    100% {opacity:100%}
+}
+
+#home_description{
+    display:flex;
+    flex-direction:row;
+    font-size:1.5rem;
+}
+
+#home_title{
+    text-align:center;
+    margin-bottom:5vh;
+}
+
+#home_title h1{
+    font-size:3rem;
+    font-family: "Montserrat",sans-serif;
+}
+
+#home_image img{
+    border-radius: 25px;
+}
+
+#home_image{
+    margin-left:5vw;
+}
+
+#home_description{
+    font-size:1.5rem;
+    font-family: "Montserrat",sans-serif;
+}
+
+.reveal{
+    opacity: 0;
+    transition: 1s all ease;  
+}
+
+.reveal.active{
+    opacity: 1;
 }

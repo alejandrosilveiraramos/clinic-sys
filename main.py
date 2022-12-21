@@ -47,9 +47,36 @@ class Person(db.Model):
 def home_page():
     return render_template('./components/home.html')
 
+@app.route('/register')
+def registerAdmin():
+    return render_template('./components/register.html')
+
+@app.route('/create-admin', methods=['POST'])
+def createAdmin():
+    name = request.form['name']
+    password = request.form['password']
+    email = request.form['email']
+    cpf = request.form['cpf']
+    position = request.form['position']
+    
+    newAdmin = Admin( name = name,
+                     password = password,
+                     email = email,
+                     cpf = cpf,
+                     position = position
+                     )
+    
+    db.session.add(newAdmin)
+    
+    db.session.commit()
+     
+    return redirect(url_for('login_page'))
+    
+
 @app.route('/new_patient')
 def new_patient_page():
     return render_template('./components/newPatient.html', titulo='Cadastro de Paciente')
+
 
 @app.route('/create', methods=['POST',])
 def create():
@@ -88,20 +115,16 @@ def login_page():
     proximo = request.args.get('proximo')
 
     return render_template('./components/login.html', proximo=proximo)
-
-@app.route('/register')
-def register_page():
-    return render_template('./components/register.html')
-
+#a
 @app.route('/editPatient/<int:id>')
 def edit_patient(id):
-    if 'admin_logado' not in session or session['admin_logado'] is None:
-        return redirect(url_for('login_page', proximo= url_for('edit_patient')))
+    #if 'admin_logado' not in session or session['admin_logado'] is None:
+    #   return redirect(url_for('login_page', proximo= url_for('edit_patient')))
     #fazer uma query do banco
     person = Person.query.filter_by(id=id).first()
     return render_template('./components/editPatient.html', titulo= 'Editar Cadastro', person = person)
 
-@app.route('/update', methods=['POST',])
+@app.route('/update', methods=['POST'])
 def update():
     
     person = Person.query.filter_by(id=request.form['id']).first()
