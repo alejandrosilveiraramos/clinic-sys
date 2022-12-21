@@ -47,18 +47,22 @@ class Person(db.Model):
 def home_page():
     return render_template('./components/home.html')
 
-@app.route('/new_patient', methods=['POST',])
+@app.route('/new_patient')
 def new_patient_page():
+    return render_template('./components/newPatient.html', titulo='Cadastro de Paciente')
+
+@app.route('/create', methods=['POST',])
+def create():
     name = request.form['name']
     email = request.form['email']
     cpf = request.form['cpf']
 
     #variavel nova recebendo classe jogo e filtrando pelo nome
-    person = Person.query.filter_by(name=name).first()
+    #person = Person.query.filter_by(name=name).first()
     # if condicional recebendo a variavel caso exista jogos cadastrados 
-    if person:
-        flash('Cadastro Já Existe!')
-        return redirect(url_for('home_page'))
+    #if person:
+    #    flash('Cadastro Já Existe!')
+    #    return redirect(url_for('home_page'))
 
     #variavel criada recebendo variaveis e as variaveis refente ao form
     new_person = Person(name=name, email=email, cpf=cpf)
@@ -81,11 +85,21 @@ def more_info(id_patient):
 
 @app.route('/login')
 def login_page():
-    return render_template('./components/login.html')
+    proximo = request.args.get('proximo')
+
+    return render_template('./components/login.html', proximo=proximo)
 
 @app.route('/register')
 def register_page():
     return render_template('./components/register.html')
+
+@app.route('/editPatient/<int:id>')
+def edit_patient(id):
+    if 'admin_logado' not in session or session['admin_logado'] is None:
+        return redirect(url_for('login_page', proximo= url_for('edit_patient')))
+    #fazer uma query do banco
+    person = Person.query.filter_by(id=id).first()
+    return render_template('./components/editPatient.html', titulo= 'Editar Cadastro', person = person)
 
 @app.route('/update', methods=['POST',])
 def update():
@@ -98,17 +112,43 @@ def update():
 
     db.session.add(person)
     db.session.commit()
-    return redirect(url_for('root'))
+    return redirect(url_for('home_page'))
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    if 'admin_logado' not in session or session['admin_logado'] is None:
-        return redirect(url_for('login_page'))
+    #if 'usuario_logado' not in session or session['usuario_logado'] is None:
+    #    return redirect(url_for('login_page'))
 
     Person.query.filter_by(id=id).delete()
     db.session.commit()
     flash('Cadastro deletado com sucesso')
-    return redirect(url_for('root'))
+    return redirect(url_for('list_page'))
+
+@app.route('/authentication', methods=['POST',])
+def authentication():
+    admin = Admin.query.filter_by(email=request.form['email']).first()
+    if admin:
+        
+        if request.form['password'] == admin.password:
+
+            session['usuario_logado'] = admin.email
+            
+
+            flash(admin.name + ' - Logado com sucesso')
+
+            proxima_pagina = request.form['proximo']
+
+            return redirect(proxima_pagina)
+        
+        else:
+            flash('usuario ou senha incorretos tente novamente')
+            return redirect(url_for('login_page'))
+
+    else:
+        flash('usuario ou senha incorretos tente novamente')
+        #dinamizando url
+
+        return redirect(url_for('login_page'))
 
 if __name__ == '__main__' :
     app.run(debug=True)
