@@ -3,12 +3,12 @@
 }
 
 body{
-    width:100vw;
     height:100vh;
     display:flex;
     flex-direction:column;
     background-color:#5a5a5a;
     color:#fff;
+    position:relative
 }
 
 header{
@@ -17,12 +17,12 @@ header{
 }
 
 main{
-    height:75vh;
     display:flex;
     flex-direction:center;
 }
 
 footer{
+    margin-top:10vh;
     height:5vh;
     text-align:center;
 }
@@ -30,6 +30,24 @@ footer{
 #home_container{
     display:flex;
     flex-direction:column;
+}
+
+#home_background{
+    height:80vh;
+    background-image:url('./assets/hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 25px;  
+    margin-bottom:16vh;
+    margin-top:10vh;
+    animation-name: appearing1;
+    animation-duration:3s;
+}
+
+@keyframes appearing1{
+    0% {opacity:0%}
+    100% {opacity:100%}
 }
 
 #home_description{
@@ -48,6 +66,10 @@ footer{
     font-family: "Montserrat",sans-serif;
 }
 
+#home_image img{
+    border-radius: 25px;
+}
+
 #home_image{
     margin-left:5vw;
 }
@@ -55,4 +77,13 @@ footer{
 #home_description{
     font-size:1.5rem;
     font-family: "Montserrat",sans-serif;
+}
+
+.reveal{
+    opacity: 0;
+    transition: 1s all ease;  
+}
+
+.reveal.active{
+    opacity: 1;
 }
